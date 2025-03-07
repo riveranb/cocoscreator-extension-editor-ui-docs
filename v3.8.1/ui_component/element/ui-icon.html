@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Icon Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .icon-box {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            background: var(--color-normal-fill);
+            transition: all 0.3s ease;
+        }
+
+        .icon-box:hover {
+            border-color: var(--color-normal-border-hover);
+            background: var(--color-normal-fill-hover);
+        }
+
+        .icon-box span {
+            margin-top: 5px;
+            font-size: 12px;
+            color: var(--color-normal-text-secondary);
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .all-icons {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <h2>Value</h2>
+                    <div>
+                        <ui-icon value="video"></ui-icon>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-icon value="video"&gt;&lt;/ui-icon&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Color</h2>
+                    <div>
+                        <ui-icon value="video" color="normal"></ui-icon>
+                        <ui-icon value="video" color=""></ui-icon>
+                        <ui-icon value="video"></ui-icon>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-icon color="normal" value="video"&gt;&lt;/ui-icon&gt;
+                        &lt;ui-icon color value="video"&gt;&lt;/ui-icon&gt;
+                        &lt;ui-icon value="video"&gt;&lt;/ui-icon&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Size</h2>
+                    <div>
+                        <ui-icon color="" value="video" style="font-size: 12px;"></ui-icon>
+                        <ui-icon color="" value="video" style="font-size: 24px;"></ui-icon>
+                        <ui-icon color="" value="video" style="font-size: 32px;"></ui-icon>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-icon color value="video" style="font-size: 12px;"&gt;&lt;/ui-icon&gt;
+                        &lt;ui-icon color value="video" style="font-size: 24px;"&gt;&lt;/ui-icon&gt;
+                        &lt;ui-icon color value="video" style="font-size: 32px;"&gt;&lt;/ui-icon&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Default</h2>
+                    <div>When the value is not found, the default value is used.</div>
+                    <div>
+                        <ui-icon default="component" value="cc.Label"></ui-icon>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-icon default="component" value="cc.Label"&gt;&lt;/ui-icon&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Hidden</h2>
+                    <div>
+                        <ui-icon hidden></ui-icon>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-icon hidden&gt;&lt;/ui-icon&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Asset Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="animation-graph"></ui-icon>
+                            <span>animation-graph</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="animation-graph-variant"></ui-icon>
+                            <span>animation-graph-variant</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="animation"></ui-icon>
+                            <span>animation</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="animation-clip"></ui-icon>
+                            <span>animation-clip</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="animation-mask"></ui-icon>
+                            <span>animation-mask</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="audio-clip"></ui-icon>
+                            <span>audio-clip</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="auto-atlas"></ui-icon>
+                            <span>auto-atlas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="bin"></ui-icon>
+                            <span>bin</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="bitmap-font"></ui-icon>
+                            <span>bitmap-font</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="buffer"></ui-icon>
+                            <span>buffer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="chunk"></ui-icon>
+                            <span>chunk</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="directory"></ui-icon>
+                            <span>directory</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="database"></ui-icon>
+                            <span>database</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="dragonbones"></ui-icon>
+                            <span>dragonbones</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="dragonbones-atlas"></ui-icon>
+                            <span>dragonbones-atlas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="excel"></ui-icon>
+                            <span>excel</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="effect"></ui-icon>
+                            <span>effect</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="effect-header"></ui-icon>
+                            <span>effect-header</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="erp-texture-cube"></ui-icon>
+                            <span>erp-texture-cube</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="erp-texture-cube-face"></ui-icon>
+                            <span>erp-texture-cube-face</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="fbx"></ui-icon>
+                            <span>fbx</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf"></ui-icon>
+                            <span>gltf</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-animation"></ui-icon>
+                            <span>gltf-animation</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-embeded-image"></ui-icon>
+                            <span>gltf-embeded-image</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-material"></ui-icon>
+                            <span>gltf-material</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-mesh"></ui-icon>
+                            <span>gltf-mesh</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-scene"></ui-icon>
+                            <span>gltf-scene</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="gltf-skeleton"></ui-icon>
+                            <span>gltf-skeleton</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="image"></ui-icon>
+                            <span>image</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="instantiation-animation"></ui-icon>
+                            <span>instantiation-animation</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="instantiation-asset"></ui-icon>
+                            <span>instantiation-asset</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="instantiation-material"></ui-icon>
+                            <span>instantiation-material</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="instantiation-mesh"></ui-icon>
+                            <span>instantiation-mesh</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="instantiation-skeleton"></ui-icon>
+                            <span>instantiation-skeleton</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="javascript"></ui-icon>
+                            <span>javascript</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="json"></ui-icon>
+                            <span>json</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="label-atlas"></ui-icon>
+                            <span>label-atlas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="material"></ui-icon>
+                            <span>material</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="mesh"></ui-icon>
+                            <span>mesh</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="particle"></ui-icon>
+                            <span>particle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="prefab"></ui-icon>
+                            <span>prefab</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="physics-material"></ui-icon>
+                            <span>physics-material</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="render-flow"></ui-icon>
+                            <span>render-flow</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="render-pipeline"></ui-icon>
+                            <span>render-pipeline</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="render-stage"></ui-icon>
+                            <span>render-stage</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="render-texture"></ui-icon>
+                            <span>render-texture</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="scene"></ui-icon>
+                            <span>scene</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="spine-data"></ui-icon>
+                            <span>spine-data</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sprite-atlas"></ui-icon>
+                            <span>sprite-atlas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="svg"></ui-icon>
+                            <span>svg</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="terrain"></ui-icon>
+                            <span>terrain</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="text"></ui-icon>
+                            <span>text</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="texture-cube"></ui-icon>
+                            <span>texture-cube</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="tiled-map"></ui-icon>
+                            <span>tiled-map</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="ttf-font"></ui-icon>
+                            <span>ttf-font</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="typescript"></ui-icon>
+                            <span>typescript</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="video-clip"></ui-icon>
+                            <span>video-clip</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="unknow"></ui-icon>
+                            <span>unknow</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="key-empty"></ui-icon>
+                            <span>key-empty</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="curve-preset"></ui-icon>
+                            <span>curve-preset</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="all-keyframe"></ui-icon>
+                            <span>all-keyframe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Component Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="box"></ui-icon>
+                            <span>box</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="button"></ui-icon>
+                            <span>button</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="billboard"></ui-icon>
+                            <span>billboard</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="camera"></ui-icon>
+                            <span>camera</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="canvas"></ui-icon>
+                            <span>canvas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="capsule"></ui-icon>
+                            <span>capsule</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="component"></ui-icon>
+                            <span>component</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cone"></ui-icon>
+                            <span>cone</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cylinder"></ui-icon>
+                            <span>cylinder</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="TAAMask"></ui-icon>
+                            <span>TAAMask</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Animation"></ui-icon>
+                            <span>cc.Animation</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.AudioSource"></ui-icon>
+                            <span>cc.AudioSource</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Billboard"></ui-icon>
+                            <span>cc.Billboard</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.BlitScreen"></ui-icon>
+                            <span>cc.BlitScreen</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.BlockInputEvents"></ui-icon>
+                            <span>cc.BlockInputEvents</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Bloom"></ui-icon>
+                            <span>cc.Bloom</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.BoxCharacterController"></ui-icon>
+                            <span>cc.BoxCharacterController</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.BoxCollider"></ui-icon>
+                            <span>cc.BoxCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.BoxCollider2D"></ui-icon>
+                            <span>cc.BoxCollider2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Button"></ui-icon>
+                            <span>cc.Button</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Camera"></ui-icon>
+                            <span>cc.Camera</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Canvas"></ui-icon>
+                            <span>cc.Canvas</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.CapsuleCharacterController"></ui-icon>
+                            <span>cc.CapsuleCharacterController</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.CapsuleCollider"></ui-icon>
+                            <span>cc.CapsuleCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.CircleCollider2D"></ui-icon>
+                            <span>cc.CircleCollider2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ColorGrading"></ui-icon>
+                            <span>cc.ColorGrading</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ConeCollider"></ui-icon>
+                            <span>cc.ConeCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ConfigurableConstraint"></ui-icon>
+                            <span>cc.ConfigurableConstraint</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ConstantForce"></ui-icon>
+                            <span>cc.ConstantForce</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.CylinderCollider"></ui-icon>
+                            <span>cc.CylinderCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.DirectionalLight"></ui-icon>
+                            <span>cc.DirectionalLight</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.DistanceJoint2D"></ui-icon>
+                            <span>cc.DistanceJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.EditBox"></ui-icon>
+                            <span>cc.EditBox</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.FSR"></ui-icon>
+                            <span>cc.FSR</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.FixedConstraint"></ui-icon>
+                            <span>cc.FixedConstraint</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.FixedJoint2D"></ui-icon>
+                            <span>cc.FixedJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Fxaa"></ui-icon>
+                            <span>cc.Fxaa</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Graphics"></ui-icon>
+                            <span>cc.Graphics</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.HBAO"></ui-icon>
+                            <span>cc.HBAO</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.HingeConstraint"></ui-icon>
+                            <span>cc.HingeConstraint</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.HingeJoint2D"></ui-icon>
+                            <span>cc.HingeJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.LODGroup"></ui-icon>
+                            <span>cc.LODGroup</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Label"></ui-icon>
+                            <span>cc.Label</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.LabelOutline"></ui-icon>
+                            <span>cc.LabelOutline</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.LabelShadow"></ui-icon>
+                            <span>cc.LabelShadow</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Layout"></ui-icon>
+                            <span>cc.Layout</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.LightProbeGroup"></ui-icon>
+                            <span>cc.LightProbeGroup</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Line"></ui-icon>
+                            <span>cc.Line</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Mask"></ui-icon>
+                            <span>cc.Mask</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.MeshCollider"></ui-icon>
+                            <span>cc.MeshCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.MeshRenderer"></ui-icon>
+                            <span>cc.MeshRenderer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.MotionStreak"></ui-icon>
+                            <span>cc.MotionStreak</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.MouseJoint2D"></ui-icon>
+                            <span>cc.MouseJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PageView"></ui-icon>
+                            <span>cc.PageView</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PageViewIndicator"></ui-icon>
+                            <span>cc.PageViewIndicator</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ParticleSystem"></ui-icon>
+                            <span>cc.ParticleSystem</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ParticleSystem2D"></ui-icon>
+                            <span>cc.ParticleSystem2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PlaneCollider"></ui-icon>
+                            <span>cc.PlaneCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PointLight"></ui-icon>
+                            <span>cc.PointLight</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PointToPointConstraint"></ui-icon>
+                            <span>cc.PointToPointConstraint</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.PolygonCollider2D"></ui-icon>
+                            <span>cc.PolygonCollider2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ProgressBar"></ui-icon>
+                            <span>cc.ProgressBar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RangedDirectionalLight"></ui-icon>
+                            <span>cc.RangedDirectionalLight</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ReflectionProbe"></ui-icon>
+                            <span>cc.ReflectionProbe</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RelativeJoint2D"></ui-icon>
+                            <span>cc.RelativeJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RenderRoot2D"></ui-icon>
+                            <span>cc.RenderRoot2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RichText"></ui-icon>
+                            <span>cc.RichText</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RigidBody"></ui-icon>
+                            <span>cc.RigidBody</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.RigidBody2D"></ui-icon>
+                            <span>cc.RigidBody2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SafeArea"></ui-icon>
+                            <span>cc.SafeArea</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ScrollBar"></ui-icon>
+                            <span>cc.ScrollBar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ScrollView"></ui-icon>
+                            <span>cc.ScrollView</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SimplexCollider"></ui-icon>
+                            <span>cc.SimplexCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SkeletalAnimation"></ui-icon>
+                            <span>cc.SkeletalAnimation</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SkinnedMeshBatchRenderer"></ui-icon>
+                            <span>cc.SkinnedMeshBatchRenderer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SkinnedMeshRenderer"></ui-icon>
+                            <span>cc.SkinnedMeshRenderer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Slider"></ui-icon>
+                            <span>cc.Slider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SliderJoint2D"></ui-icon>
+                            <span>cc.SliderJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Sorting"></ui-icon>
+                            <span>cc.Sorting</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SphereCollider"></ui-icon>
+                            <span>cc.SphereCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SphereLight"></ui-icon>
+                            <span>cc.SphereLight</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SpotLight"></ui-icon>
+                            <span>cc.SpotLight</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SpringJoint2D"></ui-icon>
+                            <span>cc.SpringJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Sprite"></ui-icon>
+                            <span>cc.Sprite</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SpriteRenderer"></ui-icon>
+                            <span>cc.SpriteRenderer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.SubContextView"></ui-icon>
+                            <span>cc.SubContextView</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.TAA"></ui-icon>
+                            <span>cc.TAA</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Terrain"></ui-icon>
+                            <span>cc.Terrain</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.TerrainCollider"></ui-icon>
+                            <span>cc.TerrainCollider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.TiledMap"></ui-icon>
+                            <span>cc.TiledMap</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.TiledTile"></ui-icon>
+                            <span>cc.TiledTile</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Toggle"></ui-icon>
+                            <span>cc.Toggle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.ToggleContainer"></ui-icon>
+                            <span>cc.ToggleContainer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.UICoordinateTracker"></ui-icon>
+                            <span>cc.UICoordinateTracker</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.UIMeshRenderer"></ui-icon>
+                            <span>cc.UIMeshRenderer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.UIOpacity"></ui-icon>
+                            <span>cc.UIOpacity</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.UIStaticBatch"></ui-icon>
+                            <span>cc.UIStaticBatch</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.UITransform"></ui-icon>
+                            <span>cc.UITransform</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.VideoPlayer"></ui-icon>
+                            <span>cc.VideoPlayer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.WebView"></ui-icon>
+                            <span>cc.WebView</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.WheelJoint2D"></ui-icon>
+                            <span>cc.WheelJoint2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.Widget"></ui-icon>
+                            <span>cc.Widget</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="cc.animation.AnimationController"></ui-icon>
+                            <span>cc.animation.AnimationController</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="dragonBones.ArmatureDisplay"></ui-icon>
+                            <span>dragonBones.ArmatureDisplay</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="internal.DebugViewRuntimeControl"></ui-icon>
+                            <span>internal.DebugViewRuntimeControl</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sp.Skeleton"></ui-icon>
+                            <span>sp.Skeleton</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="directional-light"></ui-icon>
+                            <span>directional-light</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="event"></ui-icon>
+                            <span>event</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="label"></ui-icon>
+                            <span>label</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="layout"></ui-icon>
+                            <span>layout</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="light"></ui-icon>
+                            <span>light</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="node"></ui-icon>
+                            <span>node</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="node-2d"></ui-icon>
+                            <span>node-2d</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="node-3d"></ui-icon>
+                            <span>node-3d</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="particle"></ui-icon>
+                            <span>particle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="plane"></ui-icon>
+                            <span>plane</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="progress-bar"></ui-icon>
+                            <span>progress-bar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="quad"></ui-icon>
+                            <span>quad</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sphere"></ui-icon>
+                            <span>sphere</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sphere-comp"></ui-icon>
+                            <span>sphere-comp</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="scrollview"></ui-icon>
+                            <span>scrollview</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="slider"></ui-icon>
+                            <span>slider</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="scrollbar"></ui-icon>
+                            <span>scrollbar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="spot-light"></ui-icon>
+                            <span>spot-light</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sphere-light"></ui-icon>
+                            <span>sphere-light</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sprite-splash"></ui-icon>
+                            <span>sprite-splash</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="transform"></ui-icon>
+                            <span>transform</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="toggle"></ui-icon>
+                            <span>toggle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="torus"></ui-icon>
+                            <span>torus</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="widget"></ui-icon>
+                            <span>widget</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="webview"></ui-icon>
+                            <span>webview</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Object Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="bell"></ui-icon>
+                            <span>bell</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="code"></ui-icon>
+                            <span>code</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="font"></ui-icon>
+                            <span>font</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="file"></ui-icon>
+                            <span>file</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="folder"></ui-icon>
+                            <span>folder</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="folder-open"></ui-icon>
+                            <span>folder-open</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="home"></ui-icon>
+                            <span>home</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="help"></ui-icon>
+                            <span>help</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="info"></ui-icon>
+                            <span>info</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="info-i"></ui-icon>
+                            <span>info-i</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="line"></ui-icon>
+                            <span>line</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="log"></ui-icon>
+                            <span>log</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="menu"></ui-icon>
+                            <span>menu</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="music"></ui-icon>
+                            <span>music</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="qr-code"></ui-icon>
+                            <span>qr-code</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="question"></ui-icon>
+                            <span>question</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="radar"></ui-icon>
+                            <span>radar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="ref-map"></ui-icon>
+                            <span>ref-map</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="star"></ui-icon>
+                            <span>star</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="texture"></ui-icon>
+                            <span>texture</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="template"></ui-icon>
+                            <span>template</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="txt"></ui-icon>
+                            <span>txt</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="video"></ui-icon>
+                            <span>video</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="word"></ui-icon>
+                            <span>word</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="wifi"></ui-icon>
+                            <span>wifi</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="zip"></ui-icon>
+                            <span>zip</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Graph Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="2D"></ui-icon>
+                            <span>2D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="3D"></ui-icon>
+                            <span>3D</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="anchor"></ui-icon>
+                            <span>anchor</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrowsv"></ui-icon>
+                            <span>arrowsv</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-bar"></ui-icon>
+                            <span>arrow-bar</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-back"></ui-icon>
+                            <span>arrow-back</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-right"></ui-icon>
+                            <span>arrow-right</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-mixing"></ui-icon>
+                            <span>arrow-mixing</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-triangle"></ui-icon>
+                            <span>arrow-triangle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-exchange"></ui-icon>
+                            <span>arrow-exchange</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-right-bold"></ui-icon>
+                            <span>arrow-right-bold</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrow-triangle-sharp"></ui-icon>
+                            <span>arrow-triangle-sharp</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="center"></ui-icon>
+                            <span>center</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="coordinates-local"></ui-icon>
+                            <span>coordinates-local</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="coordinates-world"></ui-icon>
+                            <span>coordinates-world</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="drop"></ui-icon>
+                            <span>drop</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="key"></ui-icon>
+                            <span>key</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="magnet"></ui-icon>
+                            <span>magnet</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="move"></ui-icon>
+                            <span>move</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="pose"></ui-icon>
+                            <span>pose</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="rise"></ui-icon>
+                            <span>rise</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="rectangle"></ui-icon>
+                            <span>rectangle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="shrink"></ui-icon>
+                            <span>shrink</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="to-right-arrow"></ui-icon>
+                            <span>to-right-arrow</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="to-left-arrow"></ui-icon>
+                            <span>to-left-arrow</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="whirl"></ui-icon>
+                            <span>whirl</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Operation Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="switch-open"></ui-icon>
+                            <span>switch-open</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="switch-close"></ui-icon>
+                            <span>switch-close</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="add"></ui-icon>
+                            <span>add</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="add-more"></ui-icon>
+                            <span>add-more</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="arrange"></ui-icon>
+                            <span>arrange</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-bottom"></ui-icon>
+                            <span>align-bottom</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-h-center"></ui-icon>
+                            <span>align-h-center</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-left"></ui-icon>
+                            <span>align-left</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-more-down"></ui-icon>
+                            <span>align-more-down</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-more-up"></ui-icon>
+                            <span>align-more-up</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-right"></ui-icon>
+                            <span>align-right</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-top"></ui-icon>
+                            <span>align-top</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="align-v-center"></ui-icon>
+                            <span>align-v-center</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="clear"></ui-icon>
+                            <span>clear</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="copy"></ui-icon>
+                            <span>copy</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="close"></ui-icon>
+                            <span>close</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="check"></ui-icon>
+                            <span>check</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="collapse"></ui-icon>
+                            <span>collapse</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="collapse-right"></ui-icon>
+                            <span>collapse-right</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="checkbox"></ui-icon>
+                            <span>checkbox</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="checkbox-some"></ui-icon>
+                            <span>checkbox-some</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="checkbox-checked"></ui-icon>
+                            <span>checkbox-checked</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="curve"></ui-icon>
+                            <span>curve</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="check-b"></ui-icon>
+                            <span>check-b</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="close-b"></ui-icon>
+                            <span>close-b</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="close-o"></ui-icon>
+                            <span>close-o</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="clear-o"></ui-icon>
+                            <span>clear-o</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="del"></ui-icon>
+                            <span>del</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-bottom"></ui-icon>
+                            <span>distribute-bottom</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-h-center"></ui-icon>
+                            <span>distribute-h-center</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-left"></ui-icon>
+                            <span>distribute-left</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-right"></ui-icon>
+                            <span>distribute-right</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-top"></ui-icon>
+                            <span>distribute-top</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="distribute-v-center"></ui-icon>
+                            <span>distribute-v-center</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="drag-asset"></ui-icon>
+                            <span>drag-asset</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="drag-component"></ui-icon>
+                            <span>drag-component</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="drag-node"></ui-icon>
+                            <span>drag-node</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="edit"></ui-icon>
+                            <span>edit</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="error"></ui-icon>
+                            <span>error</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="exit"></ui-icon>
+                            <span>exit</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="expand"></ui-icon>
+                            <span>expand</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="export"></ui-icon>
+                            <span>export</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="examine"></ui-icon>
+                            <span>examine</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="experiment"></ui-icon>
+                            <span>experiment</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="eye-close"></ui-icon>
+                            <span>eye-close</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="eye-open"></ui-icon>
+                            <span>eye-open</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="eye-close-b"></ui-icon>
+                            <span>eye-close-b</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="eye-open-b"></ui-icon>
+                            <span>eye-open-b</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="filter"></ui-icon>
+                            <span>filter</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="forward"></ui-icon>
+                            <span>forward</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="fullscreen"></ui-icon>
+                            <span>fullscreen</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="import"></ui-icon>
+                            <span>import</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="location"></ui-icon>
+                            <span>location</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="list"></ui-icon>
+                            <span>list</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="link"></ui-icon>
+                            <span>link</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="lock"></ui-icon>
+                            <span>lock</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="next-play"></ui-icon>
+                            <span>next-play</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="next-step"></ui-icon>
+                            <span>next-step</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="no-drop"></ui-icon>
+                            <span>no-drop</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="maxi"></ui-icon>
+                            <span>maxi</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="mini"></ui-icon>
+                            <span>mini</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="pause"></ui-icon>
+                            <span>pause</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="pin"></ui-icon>
+                            <span>pin</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="play"></ui-icon>
+                            <span>play</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="prev-play"></ui-icon>
+                            <span>prev-play</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="popup"></ui-icon>
+                            <span>popup</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="radio"></ui-icon>
+                            <span>radio</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="radio-checked"></ui-icon>
+                            <span>radio-checked</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="reset"></ui-icon>
+                            <span>reset</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="refresh"></ui-icon>
+                            <span>refresh</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="rewind"></ui-icon>
+                            <span>rewind</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="reduce"></ui-icon>
+                            <span>reduce</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="readonly"></ui-icon>
+                            <span>readonly</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="rotate"></ui-icon>
+                            <span>rotate</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="save"></ui-icon>
+                            <span>save</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="stop"></ui-icon>
+                            <span>stop</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="scale-origin"></ui-icon>
+                            <span>scale-origin</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="select"></ui-icon>
+                            <span>select</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="success"></ui-icon>
+                            <span>success</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="setting"></ui-icon>
+                            <span>setting</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="sort-more"></ui-icon>
+                            <span>sort-more</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="search"></ui-icon>
+                            <span>search</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="search-more"></ui-icon>
+                            <span>search-more</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="save-o"></ui-icon>
+                            <span>save-o</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="search-b"></ui-icon>
+                            <span>search-b</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="unpin"></ui-icon>
+                            <span>unpin</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="unlink"></ui-icon>
+                            <span>unlink</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="unlock"></ui-icon>
+                            <span>unlock</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="un-maxi"></ui-icon>
+                            <span>un-maxi</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="warn"></ui-icon>
+                            <span>warn</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="warn-triangle"></ui-icon>
+                            <span>warn-triangle</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="zoomin"></ui-icon>
+                            <span>zoomin</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="zoomout"></ui-icon>
+                            <span>zoomout</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Package Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="assets"></ui-icon>
+                            <span>assets</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="assets-preview"></ui-icon>
+                            <span>assets-preview</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="animator"></ui-icon>
+                            <span>animator</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="builder"></ui-icon>
+                            <span>builder</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="code-editor"></ui-icon>
+                            <span>code-editor</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="dev-tools"></ui-icon>
+                            <span>dev-tools</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="extension"></ui-icon>
+                            <span>extension</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="hierarchy"></ui-icon>
+                            <span>hierarchy</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="inspector"></ui-icon>
+                            <span>inspector</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="service"></ui-icon>
+                            <span>service</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="picture"></ui-icon>
+                            <span>picture</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="shortcuts"></ui-icon>
+                            <span>shortcuts</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="build-bundle"></ui-icon>
+                            <span>build-bundle</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Platform Icons</h2>
+                    <div class="all-icons">
+                        <div class="icon-box">
+                            <ui-icon color="" value="android"></ui-icon>
+                            <span>android</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="computer"></ui-icon>
+                            <span>computer</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="html5"></ui-icon>
+                            <span>html5</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="ios"></ui-icon>
+                            <span>ios</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="mini-game"></ui-icon>
+                            <span>mini-game</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="mobile"></ui-icon>
+                            <span>mobile</span>
+                        </div>
+                        <div class="icon-box">
+                            <ui-icon color="" value="wechat"></ui-icon>
+                            <span>wechat</span>
+                        </div>
+                    </div>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        value // icon name
+                        color // icon color
+                        size // icon size
+                        default // default icon when value not found
+                        hidden
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

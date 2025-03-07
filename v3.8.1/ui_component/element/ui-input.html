@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Input Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-input {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .ui-input:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,122,255,0.1);
+        }
+
+        .ui-input input {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .ui-input input::placeholder {
+            color: #999;
+        }
+
+        .ui-input[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-input[readonly] {
+            background-color: var(--code-background);
+        }
+
+        .ui-input[invalid] {
+            border-color: red;
+        }
+
+        .ui-input[hidden] {
+            display: none;
+        }
+
+        .ui-input .prefix,
+        .ui-input .suffix {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .ui-input .prefix {
+            margin-right: 8px;
+        }
+
+        .ui-input .suffix {
+            margin-left: 8px;
+        }
+
+        .ui-input .clear-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .ui-input[show-clear]:not([disabled]):not([readonly]) input:not(:placeholder-shown) + .clear-button {
+            display: flex;
+        }
+
+        .ui-input .clear-button:hover {
+            color: var(--text-color);
+        }
+
+        .ui-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .example-group {
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 0.9em;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Basic Input Example -->
+                <div class="row">
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="text" value="test" placeholder="Enter text">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input value="test"&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Password Input Example -->
+                <div class="row">
+                    <h2>password</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="password" value="xxxx" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input password value="xxxx"&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Placeholder Examples -->
+                <div class="row">
+                    <h2>placeholder</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="text" placeholder="name">
+                        </div>
+                        <div class="ui-input">
+                            <input type="text" placeholder="i18n:ui-kit.preview.ui.input.placeholder">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input placeholder="name"&gt;&lt;/ui-input&gt;
+&lt;ui-input placeholder="i18n:ui-kit.preview.ui.input.placeholder"&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Prefix Example -->
+                <div class="row">
+                    <h2>prefix</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <span class="prefix">
+                                <span class="ui-icon">🔍</span>
+                            </span>
+                            <input type="text" placeholder="Search...">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input&gt;
+    &lt;ui-icon slot="prefix" value="search"&gt;&lt;/ui-icon&gt;
+&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Suffix Example -->
+                <div class="row">
+                    <h2>suffix</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="text" placeholder="Enter amount">
+                            <span class="suffix">RMB</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input&gt;
+    &lt;span slot="suffix"&gt;RMB&lt;/span&gt;
+&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Show Clear Example -->
+                <div class="row">
+                    <h2>show-clear</h2>
+                    <div class="demo-area">
+                        <div class="ui-input" show-clear>
+                            <input type="text" value="show-clear" placeholder="Type to show clear button">
+                            <button class="clear-button" type="button">×</button>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input value="show-clear" show-clear&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Auto Select Example -->
+                <div class="row">
+                    <h2>auto-select="false"</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="text" value="auto-select" placeholder="Click to select">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input value="auto-select" auto-select="false"&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- States Examples -->
+                <div class="row">
+                    <h2>States</h2>
+                    <div class="demo-area">
+                        <div class="example-group">
+                            <div class="description">Invalid state</div>
+                            <div class="ui-input" invalid>
+                                <input type="text" placeholder="Invalid input">
+                            </div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Readonly state</div>
+                            <div class="ui-input" readonly>
+                                <input type="text" value="readonly" readonly>
+                            </div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Disabled state</div>
+                            <div class="ui-input" disabled>
+                                <input type="text" value="disabled" disabled>
+                            </div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Hidden state</div>
+                            <div class="ui-input" hidden>
+                                <input type="text" placeholder="Hidden input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input invalid&gt;&lt;/ui-input&gt;
+&lt;ui-input readonly&gt;&lt;/ui-input&gt;
+&lt;ui-input disabled&gt;&lt;/ui-input&gt;
+&lt;ui-input hidden&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+show-clear
+password
+auto-select
+disabled
+readonly
+invalid
+placeholder
+hidden</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <div class="demo-area">
+                        <div class="ui-input">
+                            <input type="text" placeholder="Type to test events">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change // general case use this event
+confirm
+cancel</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input
+    @change="onChange($event.target.value)"
+    @confirm="onConfirm($event.target.value)"
+    @cancel="onCancel($event.target.value)"
+&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>// vue object
+methods = {
+    onConfirm(value: string) {
+        console.log('onConfirm', value);
+    },
+    onChange(value: string) {
+        console.log('onChange', value);
+    },
+    onCancel(value: string) {
+        console.log('onCancel', value);
+    }
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-input id="input"&gt;&lt;/ui-input&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#input');
+element.addEventListener('confirm', () => {
+    console.log('onConfirm', value);
+});
+element.addEventListener('change', () => {
+    console.log('onChange', value);
+});
+element.addEventListener('cancel', () => {
+    console.log('onCancel', value);
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const inputs = document.querySelectorAll('.ui-input input');
+        
+        inputs.forEach(input => {
+            input.addEventListener('input', (event) => {
+                console.log('Value changed:', event.target.value);
+            });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    console.log('Confirmed:', event.target.value);
+                } else if (event.key === 'Escape') {
+                    console.log('Cancelled');
+                }
+            });
+        });
+
+        // Clear button functionality
+        const clearButtons = document.querySelectorAll('.clear-button');
+        
+        clearButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const input = button.previousElementSibling;
+                input.value = '';
+                input.focus();
+            });
+        });
+    </script>
+</body>
+</html>

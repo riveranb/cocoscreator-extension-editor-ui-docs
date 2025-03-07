@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Color Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        h4 {
+            margin: 10px 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-color {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+        }
+
+        .ui-color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .ui-color-input {
+            border: none;
+            padding: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100px;
+        }
+
+        .ui-color-input:focus {
+            outline: none;
+        }
+
+        .ui-color[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-color[readonly] {
+            background-color: var(--code-background);
+        }
+
+        .ui-color[invalid] {
+            border-color: red;
+        }
+
+        .ui-color[hidden] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Value Examples -->
+                <div class="row">
+                    <h2>value</h2>
+                    <div class="demo-area">
+                        <div class="ui-color mb-10">
+                            <div class="ui-color-preview" style="background: rgb(22,244,55)"></div>
+                            <input type="text" class="ui-color-input" value="[22,244,55,99]" readonly>
+                        </div>
+                        <div class="ui-color mb-10">
+                            <div class="ui-color-preview" style="background: #6997f8"></div>
+                            <input type="text" class="ui-color-input" value="#6997f8" readonly>
+                        </div>
+                        <div class="ui-color">
+                            <div class="ui-color-preview" style="background: rgba(255,144,137,1)"></div>
+                            <input type="text" class="ui-color-input" value="rgba(255,144,137,1)" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color value="[22,244,55,99]"&gt;&lt;/ui-color&gt;
+&lt;ui-color value="#6997f8"&gt;&lt;/ui-color&gt;
+&lt;ui-color value="rgba(255,144,137,1)"&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Invalid Example -->
+                <div class="row">
+                    <h2>invalid</h2>
+                    <div class="demo-area">
+                        <div class="ui-color" invalid>
+                            <div class="ui-color-preview" style="background: red"></div>
+                            <input type="text" class="ui-color-input" value="red" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color value="red" invalid&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Readonly Example -->
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="demo-area">
+                        <div class="ui-color" readonly>
+                            <div class="ui-color-preview" style="background: rgb(22,244,55)"></div>
+                            <input type="text" class="ui-color-input" value="[22,244,55,99]" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color value="[22,244,55,99]" readonly&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Disabled Example -->
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="demo-area">
+                        <div class="ui-color" disabled>
+                            <div class="ui-color-preview" style="background: rgb(22,244,55)"></div>
+                            <input type="text" class="ui-color-input" value="[22,244,55,99]" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color value="[22,244,55,99]" disabled&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hidden Example -->
+                <div class="row">
+                    <h2>hidden</h2>
+                    <div class="demo-area">
+                        <div class="ui-color" hidden>
+                            <div class="ui-color-preview" style="background: rgb(22,244,55)"></div>
+                            <input type="text" class="ui-color-input" value="[22,244,55,99]" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color value="[22,244,55,99]" hidden&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value // support format: [255,255,255,255], #hex, rgba(255,255,255,1)
+readonly
+disabled
+invalid
+hidden</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <h4>current value: #ccc</h4>
+                    <div class="demo-area">
+                        <div class="ui-color">
+                            <div class="ui-color-preview" style="background: #ccc"></div>
+                            <input type="text" class="ui-color-input" value="#ccc" id="demo-color">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change
+confirm
+cancel  // ESC cancel, restore the last value</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color ref="color" value="#ccc"
+    @confirm="onConfirm($event.target.value)"
+    @change="onChange($event.target.value)"
+    @cancel="onCancel($event.target.value)"
+&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-color id="color" value="#ccc"&gt;&lt;/ui-color&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#color');
+
+element.addEventListener('confirm', (event) => {
+    const colorValue = event.target.value;
+});
+element.addEventListener('change', (event) => {
+    console.log('onChange', event.target.value);
+});
+element.addEventListener('cancel', (event) => {
+    console.log('onCancel', event.target.value);
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methods Section -->
+            <section class="section">
+                <h2>Methods</h2>
+                <div class="row">
+                    <h2>get/set value</h2>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#color');
+// set value
+element.value = '#ccc';
+
+// get value
+const colorValue = element.value;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const demoColor = document.getElementById('demo-color');
+        const colorPreview = demoColor.previousElementSibling;
+
+        demoColor.addEventListener('input', (event) => {
+            colorPreview.style.background = event.target.value;
+        });
+    </script>
+</body>
+</html>

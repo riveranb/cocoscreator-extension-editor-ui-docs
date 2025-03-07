@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Link Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ui-link:hover {
+            text-decoration: underline;
+        }
+
+        .ui-link[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-link[ctrl] {
+            cursor: help;
+        }
+
+        .ui-link[ctrl]:hover::after {
+            content: " (Press Ctrl to open)";
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .ui-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ui-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .ui-button:hover {
+            opacity: 0.9;
+        }
+
+        .description {
+            color: #666;
+            font-size: 0.9em;
+            margin: 4px 0;
+        }
+
+        .example-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Basic Link Example -->
+                <div class="row">
+                    <h2>link</h2>
+                    <div class="description">will open browser</div>
+                    <div class="demo-area">
+                        <a class="ui-link" href="https://www.cocos.com/products">https://www.cocos.com/products</a>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-link&gt;https://www.cocos.com/products&lt;/ui-link&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Link with Icon Example -->
+                <div class="row">
+                    <h2>link + ui-icon</h2>
+                    <div class="description">will open browser</div>
+                    <div class="demo-area">
+                        <a class="ui-link" href="https://www.cocos.com/products">
+                            <span class="ui-icon">?</span>
+                        </a>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-link value="https://www.cocos.com/products"&gt;
+    &lt;ui-icon value="help"&gt;&lt;/ui-icon&gt;
+&lt;/ui-link&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Ctrl Link Example -->
+                <div class="row">
+                    <h2>Ctrl + link</h2>
+                    <div class="description">must press ctrl key, or it would not work</div>
+                    <div class="demo-area">
+                        <a class="ui-link" ctrl href="https://www.cocos.com/products">https://www.cocos.com/products</a>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-link ctrl&gt;https://www.cocos.com/products&lt;/ui-link&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Filepath Example -->
+                <div class="row">
+                    <h2>filepath</h2>
+                    <div class="description">will open filepath</div>
+                    <div class="demo-area">
+                        <a class="ui-link" href="/Users/riverwang/Work/IGS/wfh_ptg">/Users/riverwang/Work/IGS/wfh_ptg</a>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-link&gt;/Users/riverwang/Work/IGS/wfh_ptg&lt;/ui-link&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Filepath with Button Example -->
+                <div class="row">
+                    <h2>filepath + ui-button</h2>
+                    <div class="demo-area">
+                        <a class="ui-link" href="/Users/riverwang/Work/IGS/wfh_ptg">
+                            <button class="ui-button">Reveal in Explorer</button>
+                        </a>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-link value="/Users/riverwang/Work/IGS/wfh_ptg"&gt;
+    &lt;ui-button&gt;Reveal in Explorer&lt;/ui-button&gt;
+&lt;/ui-link&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Type Examples -->
+                <div class="row">
+                    <h2>type</h2>
+                    
+                    <!-- Asset UUID Example -->
+                    <div class="example-group">
+                        <div class="description">Click it will twinkle the asset in assets panel.</div>
+                        <div class="demo-area">
+                            <a class="ui-link" type="assetUuid">57520716-48c8-4a19-8acf-41c9f8777fb0</a>
+                        </div>
+                        <div class="code-block">
+                            <pre><code>&lt;ui-link type="assetUuid"&gt;57520716-48c8-4a19-8acf-41c9f8777fb0&lt;/ui-link&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Asset URL Example -->
+                    <div class="example-group">
+                        <div class="description">Click it will twinkle the asset in assets panel.</div>
+                        <div class="demo-area">
+                            <a class="ui-link" type="assetUrl">db://internal/default_prefab/Camera.prefab</a>
+                        </div>
+                        <div class="code-block">
+                            <pre><code>&lt;ui-link type="assetUrl"&gt;db://internal/default_prefab/Camera.prefab&lt;/ui-link&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Node UUID Example -->
+                    <div class="example-group">
+                        <div class="description">Click it will twinkle the node in hierarchy panel.</div>
+                        <div class="demo-area">
+                            <a class="ui-link" type="nodeUuid">de4bfb99-632a-4c8b-b4d1-ad84baaa2f5f</a>
+                        </div>
+                        <div class="code-block">
+                            <pre><code>&lt;ui-link type="nodeUuid"&gt;de4bfb99-632a-4c8b-b4d1-ad84baaa2f5f&lt;/ui-link&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+ctrl // must press CTRL key, or it would not work
+type // different asset url</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

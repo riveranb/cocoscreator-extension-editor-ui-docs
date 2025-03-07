@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Markdown Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-markdown {
+            padding: 15px;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .ui-markdown h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+            color: var(--text-color);
+        }
+
+        .ui-markdown h2 {
+            font-size: 1.5em;
+            margin: 0.83em 0;
+            color: var(--text-color);
+        }
+
+        .ui-markdown h3 {
+            font-size: 1.17em;
+            margin: 1em 0;
+            color: var(--text-color);
+        }
+
+        .ui-markdown p {
+            margin: 1em 0;
+        }
+
+        .ui-markdown ul {
+            list-style-type: disc;
+            padding-left: 2em;
+            margin: 1em 0;
+        }
+
+        .ui-markdown ol {
+            list-style-type: decimal;
+            padding-left: 2em;
+            margin: 1em 0;
+        }
+
+        .ui-markdown li {
+            margin: 0.5em 0;
+        }
+
+        .ui-markdown code {
+            background-color: var(--code-background);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .ui-markdown pre {
+            background-color: var(--code-background);
+            padding: 1em;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .ui-markdown pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .ui-markdown blockquote {
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 4px solid var(--border-color);
+            color: #666;
+        }
+
+        .ui-markdown table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+
+        .ui-markdown th,
+        .ui-markdown td {
+            border: 1px solid var(--border-color);
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        .ui-markdown th {
+            background-color: var(--code-background);
+        }
+
+        .ui-markdown img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .ui-markdown a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .ui-markdown a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+                <div class="row">
+                    <div class="demo-area">
+                        <div class="ui-markdown">
+                            # 标题一
+                            - 任务一
+                            - 任务二
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-markdown&gt;
+    # 标题一
+    - 任务一
+    - 任务二
+&lt;/ui-markdown&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>src // set md file path to parse</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section class="section">
+                <h2>Examples</h2>
+                <div class="row">
+                    <h2>Basic Markdown</h2>
+                    <div class="demo-area">
+                        <div class="ui-markdown">
+                            # Heading 1
+                            ## Heading 2
+                            ### Heading 3
+
+                            This is a paragraph with **bold** and *italic* text.
+
+                            - List item 1
+                            - List item 2
+                              - Nested item 1
+                              - Nested item 2
+
+                            1. Numbered item 1
+                            2. Numbered item 2
+
+                            > This is a blockquote
+
+                            `inline code` and code block:
+                            ```javascript
+                            const hello = "world";
+                            console.log(hello);
+                            ```
+
+                            | Header 1 | Header 2 |
+                            |----------|----------|
+                            | Cell 1   | Cell 2   |
+                            | Cell 3   | Cell 4   |
+
+                            [Link text](https://example.com)
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

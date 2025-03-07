@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Select Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-select {
+            display: inline-block;
+            position: relative;
+            min-width: 200px;
+        }
+
+        .ui-select select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: white;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-color);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+        }
+
+        .ui-select select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,122,255,0.1);
+        }
+
+        .ui-select select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-select select:read-only {
+            background-color: var(--code-background);
+        }
+
+        .ui-select[invalid] select {
+            border-color: red;
+        }
+
+        .ui-select[hidden] {
+            display: none;
+        }
+
+        .ui-select select option {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Placeholder Example -->
+                <div class="row">
+                    <h2>placeholder</h2>
+                    <div class="demo-area">
+                        <div class="ui-select">
+                            <select>
+                                <option value="" disabled selected>choose</option>
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                                <option value="2">Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.</option>
+                                <option value="3">Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.</option>
+                                <option value="4">Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!</option>
+                                <option value="5">Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select placeholder="choose"&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+    &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+    &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+    &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+    &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Invalid Example -->
+                <div class="row">
+                    <h2>invalid</h2>
+                    <div class="demo-area">
+                        <div class="ui-select" invalid>
+                            <select>
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select value="1" invalid&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Readonly Example -->
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="demo-area">
+                        <div class="ui-select">
+                            <select readonly>
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select value="1" readonly&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Disabled Example -->
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="demo-area">
+                        <div class="ui-select">
+                            <select disabled>
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select value="1" disabled&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hidden Example -->
+                <div class="row">
+                    <h2>hidden</h2>
+                    <div class="demo-area">
+                        <div class="ui-select" hidden>
+                            <select>
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select value="1" hidden&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <div class="demo-area">
+                        <div class="ui-select">
+                            <select id="demo-select">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change // general case use this event
+confirm</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select value="1"
+    @change="onChange($event.target.value)"
+    @confirm="onConfirm($event.target.value)"
+&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+    &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+    &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+    &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+    &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>methods = {
+    onChange(value: string) {
+        console.log('onChange', value);
+    },
+    onConfirm(value: string) {
+        console.log('onConfirm', value);
+    },
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-select id="ui-select" value="1"&gt;
+    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+    &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+    &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+    &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+    &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+&lt;/ui-select&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#ui-select');
+
+// addEventListener
+element.addEventListener('change', (event) => {
+    // changed value
+    console.log(event.target.value)
+});
+element.addEventListener('confirm', (event) => {
+    // confirm value
+    console.log(event.target.value)
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const demoSelect = document.getElementById('demo-select');
+        demoSelect.addEventListener('change', (event) => {
+            console.log('Value changed:', event.target.value);
+        });
+    </script>
+</body>
+</html>

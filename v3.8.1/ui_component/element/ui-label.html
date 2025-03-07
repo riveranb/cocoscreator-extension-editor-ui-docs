@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Label Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ui-label {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        .ui-label[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-label[readonly] {
+            background-color: var(--code-background);
+        }
+
+        .ui-label[invalid] {
+            color: red;
+        }
+
+        .ui-label[hidden] {
+            display: none;
+        }
+
+        .ui-label[i18n] {
+            font-style: italic;
+            color: #666;
+        }
+
+        .ui-label[i18n]::before {
+            content: "i18n:";
+            color: var(--primary-color);
+            margin-right: 4px;
+        }
+
+        .example-group {
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 0.9em;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Basic Label Examples -->
+                <div class="row">
+                    <div class="demo-area">
+                        <div class="ui-label">Hello</div>
+                        <div class="ui-label">i18n:scene.title</div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-label value="Hello"&gt;&lt;/ui-label&gt;
+&lt;ui-label value="i18n:scene.title"&gt;&lt;/ui-label&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- i18n Example -->
+                <div class="row">
+                    <h2>i18n</h2>
+                    <div class="demo-area">
+                        <div class="ui-label" i18n>scene.title</div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-label i18n&gt;scene.title&lt;/ui-label&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- States Examples -->
+                <div class="row">
+                    <h2>States</h2>
+                    <div class="demo-area">
+                        <div class="example-group">
+                            <div class="description">Disabled state</div>
+                            <div class="ui-label" disabled>Disabled Label</div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Readonly state</div>
+                            <div class="ui-label" readonly>Readonly Label</div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Invalid state</div>
+                            <div class="ui-label" invalid>Invalid Label</div>
+                        </div>
+                        <div class="example-group">
+                            <div class="description">Hidden state</div>
+                            <div class="ui-label" hidden>Hidden Label</div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-label disabled&gt;Disabled Label&lt;/ui-label&gt;
+&lt;ui-label readonly&gt;Readonly Label&lt;/ui-label&gt;
+&lt;ui-label invalid&gt;Invalid Label&lt;/ui-label&gt;
+&lt;ui-label hidden&gt;Hidden Label&lt;/ui-label&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+i18n</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

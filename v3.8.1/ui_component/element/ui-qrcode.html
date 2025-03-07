@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI QR Code Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ui-qrcode {
+            display: inline-block;
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .ui-qrcode img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .qr-info {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Value Example -->
+                <div class="row">
+                    <h2>value</h2>
+                    <div class="demo-area">
+                        <div class="ui-qrcode" style="width: 150px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.cocos.com/docs" alt="QR Code">
+                            <div class="qr-info">https://www.cocos.com/docs</div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-qrcode value="https://www.cocos.com/docs"&gt;&lt;/ui-qrcode&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Size Example -->
+                <div class="row">
+                    <h2>size</h2>
+                    <div class="demo-area">
+                        <div class="ui-qrcode" style="width: 100px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.cocos.com/docs" alt="QR Code">
+                            <div class="qr-info">Size: 100px</div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-qrcode value="https://www.cocos.com/docs" size="100"&gt;&lt;/ui-qrcode&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value // URL or text to encode
+size // Size of the QR code in pixels</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const qrCodes = document.querySelectorAll('.ui-qrcode');
+        qrCodes.forEach(qr => {
+            const size = qr.style.width;
+            const img = qr.querySelector('img');
+            if (img) {
+                img.style.width = size;
+                img.style.height = size;
+            }
+        });
+    </script>
+</body>
+</html>

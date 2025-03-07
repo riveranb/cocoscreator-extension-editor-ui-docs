@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Num Input Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .mb-4 {
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-num-input {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            min-width: 100px;
+        }
+
+        .ui-num-input input {
+            border: none;
+            padding: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .ui-num-input input:focus {
+            outline: none;
+        }
+
+        .ui-num-input[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-num-input[readonly] {
+            background-color: var(--code-background);
+        }
+
+        .ui-num-input[invalid] {
+            border-color: red;
+        }
+
+        .ui-num-input[hidden] {
+            display: none;
+        }
+
+        .ui-num-input .unit {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .ui-num-input .label {
+            color: #666;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Value Example -->
+                <div class="row">
+                    <h2>value</h2>
+                    <p>can drag to change value</p>
+                    <div class="demo-area">
+                        <div class="ui-num-input">
+                            <input type="number" value="666" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input value="666"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step Example -->
+                <div class="row">
+                    <h2>step</h2>
+                    <p>If not set step, default step will be use by preference</p>
+                    <div class="demo-area">
+                        <div class="ui-num-input">
+                            <input type="number" value="10" step="1" readonly>
+                            <span class="unit">Step: 1</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input value="10" step="1"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Precision Example -->
+                <div class="row">
+                    <h2>preci</h2>
+                    <p>correct decimal places number</p>
+                    <div class="demo-area">
+                        <div class="ui-num-input mb-4">
+                            <input type="number" value="10" preci="0" readonly>
+                            <span class="unit">Decimals: 0</span>
+                        </div>
+                        <div class="ui-num-input mb-4">
+                            <input type="number" value="10.123" preci="2" readonly>
+                            <span class="unit">Decimals: 2</span>
+                        </div>
+                        <div class="ui-num-input">
+                            <input type="number" value="10.153" preci="1" readonly>
+                            <span class="unit">Decimals: 1</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input value="10" preci="0"&gt;&lt;/ui-num-input&gt;
+&lt;ui-num-input value="10.123" preci="2"&gt;&lt;/ui-num-input&gt;
+&lt;ui-num-input value="10.153" preci="1"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Min/Max Example -->
+                <div class="row">
+                    <h2>min or max</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input mb-4">
+                            <input type="number" value="9" step="1" min="5" readonly>
+                            <span class="unit">Min: 5, Step: 1</span>
+                        </div>
+                        <div class="ui-num-input mb-4">
+                            <input type="number" value="9" step="1" max="10" readonly>
+                            <span class="unit">Max: 10, Step: 1</span>
+                        </div>
+                        <div class="ui-num-input mb-4">
+                            <input type="number" value="9" step="1" min="5" max="10" readonly>
+                            <span class="unit">Min: 5, Max: 10, Step: 1</span>
+                        </div>
+                        <div class="ui-num-input">
+                            <input type="number" value="10" step="1" min="5" max="10" readonly>
+                            <span class="unit">Min: 5, Max: 10, Step: 1</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input value="9" step="1" min="5"&gt;&lt;/ui-num-input&gt;
+&lt;ui-num-input value="9" step="1" max="10"&gt;&lt;/ui-num-input&gt;
+&lt;ui-num-input value="9" step="1" min="5" max="10"&gt;&lt;/ui-num-input&gt;
+&lt;ui-num-input value="90" step="1" min="5" max="10"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Unit Example -->
+                <div class="row">
+                    <h2>unit</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input">
+                            <input type="number" value="10" readonly>
+                            <span class="unit">px</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input value="10" unit="px"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Label Example -->
+                <div class="row">
+                    <h2>label</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input">
+                            <span class="label">X</span>
+                            <input type="number" value="0" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input label="X" value="0"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Invalid Example -->
+                <div class="row">
+                    <h2>invalid</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input" invalid>
+                            <input type="number" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input invalid&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Readonly Example -->
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input" readonly>
+                            <input type="number" value="0" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input readonly value="0"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Disabled Example -->
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input" disabled>
+                            <input type="number" value="0" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input disabled value="0"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hidden Example -->
+                <div class="row">
+                    <h2>hidden</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input" hidden>
+                            <input type="number" value="0" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input hidden value="0"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+unit
+label
+preci
+step
+max
+min
+disabled
+readonly
+invalid
+placeholder
+hidden</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <div class="demo-area">
+                        <div class="ui-num-input">
+                            <input type="number" id="demo-num-input">
+                            <span class="unit">px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change // general case use this event
+confirm
+cancel
+unit-click</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input unit="px"
+    @change="onChange($event.target.value)"
+    @confirm="onConfirm($event.target.value)"
+    @cancel="onCancel($event.target.value)"
+    @unit-click="onUnitClick"
+&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-num-input id="ui-num-input" unit="px"&gt;&lt;/ui-num-input&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#ui-num-input');
+
+// addEventListener
+element.addEventListener('change', (event) => {
+    // changed value
+    console.log('onChange', event.target.value)
+});
+element.addEventListener('confirm', (event) => {
+    // confirm value
+    console.log('onConfirm', event.target.value)
+});
+element.addEventListener('cancel', (event) => {
+    // cancel value
+    console.log('onCancel', event.target.value)
+});
+element.addEventListener('unit-click', () => {
+    console.log('unit-click')
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const demoNumInput = document.getElementById('demo-num-input');
+        demoNumInput.addEventListener('change', (event) => {
+            console.log('Value changed:', event.target.value);
+        });
+    </script>
+</body>
+</html>

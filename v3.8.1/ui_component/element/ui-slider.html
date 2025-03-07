@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Slider Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-slider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .ui-slider-track {
+            flex: 1;
+            height: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .ui-slider-fill {
+            position: absolute;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .ui-slider-thumb {
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .ui-slider-thumb:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .ui-slider-thumb:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0,122,255,0.2);
+        }
+
+        .ui-slider-input {
+            width: 60px;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .ui-slider-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0,122,255,0.1);
+        }
+
+        .ui-slider[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-slider[disabled] .ui-slider-thumb {
+            cursor: not-allowed;
+        }
+
+        .ui-slider[readonly] .ui-slider-thumb {
+            cursor: default;
+        }
+
+        .ui-slider[invalid] .ui-slider-fill {
+            background-color: red;
+        }
+
+        .ui-slider[invalid] .ui-slider-thumb {
+            border-color: red;
+        }
+
+        .ui-slider[hidden] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Value Example -->
+                <div class="row">
+                    <h2>value</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 0%"></div>
+                                <div class="ui-slider-thumb" style="left: 0%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider value="0"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hide Num Input Example -->
+                <div class="row">
+                    <h2>hide-num-input</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 0%"></div>
+                                <div class="ui-slider-thumb" style="left: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider value="0" hide-num-input&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step Example -->
+                <div class="row">
+                    <h2>step</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 20%"></div>
+                                <div class="ui-slider-thumb" style="left: 20%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="20" min="0" max="100" step="2">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider step="2" value="20" min="0" max="100"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Precision Example -->
+                <div class="row">
+                    <h2>preci</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 20%"></div>
+                                <div class="ui-slider-thumb" style="left: 20%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="20.00" min="0" step="0.001">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider step="0.001" value="20" preci="2"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Min/Max Example -->
+                <div class="row">
+                    <h2>min / max</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 0%"></div>
+                                <div class="ui-slider-thumb" style="left: 0%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="0" min="0" max="20">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider value="0" min="0" max="20"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Invalid Example -->
+                <div class="row">
+                    <h2>invalid</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider" invalid>
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 20%"></div>
+                                <div class="ui-slider-thumb" style="left: 20%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="20" min="0">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider invalid value="20"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Readonly Example -->
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider" readonly>
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 20%"></div>
+                                <div class="ui-slider-thumb" style="left: 20%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="20" min="0" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider readonly value="20"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Disabled Example -->
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider" disabled>
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 20%"></div>
+                                <div class="ui-slider-thumb" style="left: 20%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="20" min="0" disabled>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider disabled value="20"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hidden Example -->
+                <div class="row">
+                    <h2>hidden</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider" hidden>
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 0%"></div>
+                                <div class="ui-slider-thumb" style="left: 0%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider hidden&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+hide-num-input
+preci
+step
+max
+min
+disabled
+readonly
+invalid
+placeholder
+hidden</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <div class="demo-area">
+                        <div class="ui-slider">
+                            <div class="ui-slider-track">
+                                <div class="ui-slider-fill" style="width: 0%"></div>
+                                <div class="ui-slider-thumb" style="left: 0%"></div>
+                            </div>
+                            <input type="number" class="ui-slider-input" id="demo-slider" value="0" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change // general case use this event
+confirm
+cancel</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider
+    @change="onChange($event.target.value)"
+    @confirm="onConfirm($event.target.value)"
+    @cancel="onCancel($event.target.value)"
+&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-slider id="ui-slider"&gt;&lt;/ui-slider&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#ui-slider');
+
+// addEventListener
+element.addEventListener('change', (event) => {
+    // changed value
+    console.log(event.target.value)
+});
+element.addEventListener('confirm', (event) => {
+    // confirm value
+    console.log(event.target.value)
+});
+element.addEventListener('cancel', (event) => {
+    // cancel value
+    console.log(event.target.value)
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const demoSlider = document.getElementById('demo-slider');
+        const demoTrack = demoSlider.parentElement.querySelector('.ui-slider-track');
+        const demoFill = demoTrack.querySelector('.ui-slider-fill');
+        const demoThumb = demoTrack.querySelector('.ui-slider-thumb');
+
+        function updateSlider(value, min, max) {
+            const percentage = ((value - min) / (max - min)) * 100;
+            demoFill.style.width = `${percentage}%`;
+            demoThumb.style.left = `${percentage}%`;
+        }
+
+        demoSlider.addEventListener('input', (event) => {
+            updateSlider(event.target.value, event.target.min, event.target.max);
+            console.log('Value changed:', event.target.value);
+        });
+    </script>
+</body>
+</html>

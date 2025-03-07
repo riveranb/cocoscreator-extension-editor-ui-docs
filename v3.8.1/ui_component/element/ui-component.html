@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        h4 {
+            margin: 10px 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-component {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            min-width: 200px;
+        }
+
+        .ui-component-input {
+            border: none;
+            padding: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .ui-component-input:focus {
+            outline: none;
+        }
+
+        .ui-component-input::placeholder {
+            color: #999;
+        }
+
+        .ui-component[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .ui-component[readonly] {
+            background-color: var(--code-background);
+        }
+
+        .ui-component[invalid] {
+            border-color: red;
+        }
+
+        .ui-component[missing] {
+            border-color: #ffa940;
+        }
+
+        .ui-component[effective] {
+            border-color: #52c41a;
+        }
+
+        .ui-label {
+            display: inline-block;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Droppable Example -->
+                <div class="row">
+                    <h2>droppable</h2>
+                    <div class="demo-area">
+                        <div class="ui-component">
+                            <input type="text" class="ui-component-input" value="cc.Camera" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component droppable="cc.Camera"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Value Missing Example -->
+                <div class="row">
+                    <h2>Value Missing</h2>
+                    <div class="demo-area">
+                        <div class="ui-component" missing effective>
+                            <input type="text" class="ui-component-input" value="xxx" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component droppable="cc.DirectionalLight" value="xxx"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Placeholder Example -->
+                <div class="row">
+                    <h2>placeholder</h2>
+                    <div class="demo-area">
+                        <div class="ui-component">
+                            <input type="text" class="ui-component-input" placeholder="i18n:ui-kit.preview.ui.component.placeholder" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component droppable="cc.Camera" placeholder="i18n:ui-kit.preview.ui.component.placeholder"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Readonly Example -->
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="demo-area">
+                        <div class="ui-component" readonly>
+                            <input type="text" class="ui-component-input" value="cc.Canvas" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component readonly droppable="cc.Canvas"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Disabled Example -->
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="demo-area">
+                        <div class="ui-component" disabled>
+                            <input type="text" class="ui-component-input" value="cc.Canvas" readonly>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component disabled droppable="cc.Canvas"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>droppable = ''; // component type, not support multiple types
+placeholder = '';
+value = ''; // component uuid, single，not support multiple
+disabled; // statement
+readonly; // statement
+invalid; // statement</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="section">
+                <h2>Events</h2>
+                <div class="row">
+                    <h2>Try It</h2>
+                    <h4>undefined</h4>
+                    <div class="demo-area">
+                        <div class="ui-component">
+                            <input type="text" class="ui-component-input" id="demo-component" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Events</h2>
+                    <div class="code-block">
+                        <pre><code>change // general case use this event
+confirm
+cancel</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component droppable="cc.Camera" ref="component"
+    @change="onChange($event.target.value)"
+    @confirm="onConfirm($event.target.value)"
+    @cancel="onCancel($event.target.value)"
+&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-component droppable="cc.Camera" id="component"&gt;&lt;/ui-component&gt;</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#component');
+
+// addEventListener
+element.addEventListener('change', (event) => {
+    const nodeUuid = event.target.value;
+});
+element.addEventListener('change', (event) => {
+    console.log('onChange', event.target.value);
+});
+element.addEventListener('cancel', (event) => {
+    console.log('onCancel', event.target.value);
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Get/Set Section -->
+            <section class="section">
+                <h2>Get/Set</h2>
+                <div class="row">
+                    <div class="code-block">
+                        <pre><code>const element = document.getElementById('#component');
+// set value
+element.value = componentUuid; // componentUuid already exist
+
+// get value
+const componentUuid = element.value;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const demoComponent = document.getElementById('demo-component');
+        demoComponent.addEventListener('change', (event) => {
+            console.log('Component value changed:', event.target.value);
+        });
+    </script>
+</body>
+</html>

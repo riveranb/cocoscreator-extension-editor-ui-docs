@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Image Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .image-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .image-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .image-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .image-preview[readonly] {
+            opacity: 0.7;
+        }
+
+        .image-preview[invalid] {
+            border-color: var(--color-normal-border-invalid);
+        }
+
+        .image-preview[hidden] {
+            display: none;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <h2>Asset UUID Value</h2>
+                    <div>
+                        <ui-image value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                    <h2>Asset URL Value</h2>
+                    <div>
+                        <ui-image value="db://internal/default_ui/atom.png/texture"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Fill</h2>
+                    <div>full of width and height</div>
+                    <div>
+                        <ui-image fill value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width: 100px; height: 50px;"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image fill value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Size</h2>
+                    <div>generate image thumbnails</div>
+                    <div>
+                        <ui-image droppable="cc.ImageAsset" value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" size="50,50"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" size="50,50"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Droppable</h2>
+                    <div>Receive drag and drop, change its value.</div>
+                    <div>Try to drop other image asset into here to replace it.</div>
+                    <div>
+                        <ui-image droppable="cc.ImageAsset" size="50,50" value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60"></ui-image>
+                        <ui-image droppable="cc.ImageAsset,file" value="db://internal/default_ui/atom.png/texture" size="50,50"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image droppable="cc.ImageAsset" value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Position</h2>
+                    <div>horizontal center, vertical middle</div>
+                    <div>
+                        <ui-image value="db://internal/default_ui/atom.png/texture" style="width: 100px; height: 50px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Origin Width Height</h2>
+                    <div>
+                        <ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Fixed Width</h2>
+                    <div>auto height</div>
+                    <div>
+                        <ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width: 100px;"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width:100px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Fixed Height</h2>
+                    <div>auto width</div>
+                    <div>
+                        <ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="height: 80px;"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="height:80px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Min Height</h2>
+                    <div>auto horizontal center</div>
+                    <div>
+                        <ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width: 100px; height: 50px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Min Width</h2>
+                    <div>auto vertial middle</div>
+                    <div>
+                        <ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width: 50px; height: 100px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="52ef29ed-bd92-4e94-ab2f-0ebc91bf3a60" style="width:50px;height:100px;"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Channel</h2>
+                    <div>Show the channel data of one image.</div>
+                    <div>The value is the combination of 'r','g','b','a'.</div>
+                    <div>Usage cases: baked images in Light Map extension.</div>
+                    <div>
+                        <ui-image value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="r" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="g" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="b" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="a" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="rgb" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                        <ui-image channel="rgba" value="db://internal/default_ui/atom.png/texture"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="r"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="g"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="b"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="a"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="rgb"&gt;&lt;/ui-image&gt;
+                        &lt;ui-image value="db://internal/default_ui/atom.png/texture" channel="rgba"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Readonly</h2>
+                    <div>
+                        <ui-image readonly droppable="cc.ImageAsset" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image readonly droppable="cc.ImageAsset" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Disabled</h2>
+                    <div>
+                        <ui-image disabled droppable="cc.ImageAsset" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image disabled droppable="cc.ImageAsset" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Invalid</h2>
+                    <div>
+                        <ui-image invalid value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image invalid value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Hidden</h2>
+                    <div>
+                        <ui-image hidden value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-image hidden value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        value
+                        fill
+                        size // use its thumbnail, size="width,height", like: size="100,100"
+                        droppable // 'cc.ImageAsset',  enable accept drop
+                        channel // show the channel of a image, the value is the combination of 'r','g','b','a'.
+                        readonly
+                        disabled
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Events">
+                <div class="row">
+                    <h2>Image value:</h2>
+                    <h4>24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941</h4>
+                    <ui-image droppable="cc.ImageAsset,cc.Texture2D,cc.SpriteFrame" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"></ui-image>
+                    <div>Try to drop other image asset into here to replace it.</div>
+                    <div class="row">
+                        <h2>Events</h2>
+                        <ui-code language="typescript">
+                            confirm
+                        </ui-code>
+                    </div>
+                    <div class="row">
+                        <h2>VUE JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-image ref="image" droppable="cc.ImageAsset,cc.Texture2D,cc.SpriteFrame" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"
+                                @confirm="confirm($event.target.value)"
+                            &gt;&lt;/ui-image&gt;
+                        </ui-code>
+                    </div>
+                    <div class="row">
+                        <h2>Vanilla JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-image id="image" droppable="cc.ImageAsset" value="24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941"&gt;&lt;/ui-image&gt;
+                        </ui-code>
+                        <ui-code language="typescript">
+                            const element = document.getElementById('#image');
+
+                            // addEventListener
+                            element.addEventListener('confirm', (event) => {
+                                // get value
+                                const imageValue = event.target.value;
+                            });
+                        </ui-code>
+                    </div>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Methods">
+                <div class="row">
+                    <ui-code language="typescript">
+                        // set value
+                        this.$refs.image.value = '24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941';
+
+                        // get value
+                        const imageValue = this.$refs.file.value;
+                    </ui-code>
+                    <ui-code language="typescript">
+                        const element = document.getElementById('#image');
+
+                        // set value
+                        element.value = '24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941';
+                        // get value
+                        const imageValue = element.value;
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

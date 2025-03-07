@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Loading Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ui-loading {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .ui-loading.small {
+            width: 16px;
+            height: 16px;
+            border-width: 1.5px;
+        }
+
+        .ui-loading.large {
+            width: 32px;
+            height: 32px;
+            border-width: 3px;
+        }
+
+        .ui-loading.dark {
+            border-color: rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+                <div class="row">
+                    <div class="demo-area">
+                        <div class="ui-loading"></div>
+                        <span class="loading-text">Loading...</span>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-loading&gt;&lt;/ui-loading&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section class="section">
+                <h2>Examples</h2>
+
+                <!-- Sizes -->
+                <div class="row">
+                    <h2>Sizes</h2>
+                    <div class="demo-area">
+                        <div class="loading-container">
+                            <div class="ui-loading small"></div>
+                            <span class="loading-text">Small</span>
+                        </div>
+                        <div class="loading-container">
+                            <div class="ui-loading"></div>
+                            <span class="loading-text">Default</span>
+                        </div>
+                        <div class="loading-container">
+                            <div class="ui-loading large"></div>
+                            <span class="loading-text">Large</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-loading class="small"&gt;&lt;/ui-loading&gt;
+&lt;ui-loading&gt;&lt;/ui-loading&gt;
+&lt;ui-loading class="large"&gt;&lt;/ui-loading&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Dark Theme -->
+                <div class="row">
+                    <h2>Dark Theme</h2>
+                    <div class="demo-area" style="background-color: #333;">
+                        <div class="loading-container">
+                            <div class="ui-loading dark"></div>
+                            <span class="loading-text" style="color: white;">Dark Theme</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-loading class="dark"&gt;&lt;/ui-loading&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Custom Colors -->
+                <div class="row">
+                    <h2>Custom Colors</h2>
+                    <div class="demo-area">
+                        <div class="loading-container">
+                            <div class="ui-loading" style="border-color: #ddd; border-top-color: #ff0000;"></div>
+                            <span class="loading-text">Red</span>
+                        </div>
+                        <div class="loading-container">
+                            <div class="ui-loading" style="border-color: #ddd; border-top-color: #00ff00;"></div>
+                            <span class="loading-text">Green</span>
+                        </div>
+                        <div class="loading-container">
+                            <div class="ui-loading" style="border-color: #ddd; border-top-color: #0000ff;"></div>
+                            <span class="loading-text">Blue</span>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-loading style="border-color: #ddd; border-top-color: #ff0000;"&gt;&lt;/ui-loading&gt;
+&lt;ui-loading style="border-color: #ddd; border-top-color: #00ff00;"&gt;&lt;/ui-loading&gt;
+&lt;ui-loading style="border-color: #ddd; border-top-color: #0000ff;"&gt;&lt;/ui-loading&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

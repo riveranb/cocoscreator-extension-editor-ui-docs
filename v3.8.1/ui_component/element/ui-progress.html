@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Progress Component Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --text-color: #333;
+            --border-color: #ddd;
+            --background-color: #f5f5f5;
+            --code-background: #f8f9fa;
+            --success-color: #52c41a;
+            --failure-color: #ff4d4f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--code-background);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .demo-area {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .ui-progress {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .ui-progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .ui-progress[percent] .ui-progress-bar::after {
+            content: attr(data-value) '%';
+            position: absolute;
+            right: 0;
+            top: -20px;
+            font-size: 12px;
+            color: var(--text-color);
+        }
+
+        .ui-progress[success] .ui-progress-bar {
+            background-color: var(--success-color);
+        }
+
+        .ui-progress[failure] .ui-progress-bar {
+            background-color: var(--failure-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <!-- Initialize Section -->
+            <section class="section">
+                <h2>Initialize</h2>
+
+                <!-- Value Examples -->
+                <div class="row">
+                    <h2>value</h2>
+                    <div class="demo-area">
+                        <div class="ui-progress mb-10">
+                            <div class="ui-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="ui-progress mb-10">
+                            <div class="ui-progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-progress&gt;&lt;/ui-progress&gt;
+&lt;ui-progress value="60"&gt;&lt;/ui-progress&gt;
+&lt;ui-progress value="100"&gt;&lt;/ui-progress&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Percent Examples -->
+                <div class="row">
+                    <h2>percent</h2>
+                    <div class="demo-area">
+                        <div class="ui-progress mb-10" percent>
+                            <div class="ui-progress-bar" style="width: 0%" data-value="0"></div>
+                        </div>
+                        <div class="ui-progress" percent>
+                            <div class="ui-progress-bar" style="width: 100%" data-value="100"></div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-progress percent&gt;&lt;/ui-progress&gt;
+&lt;ui-progress value="100" percent&gt;&lt;/ui-progress&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Success Example -->
+                <div class="row">
+                    <h2>success</h2>
+                    <div class="demo-area">
+                        <div class="ui-progress" success>
+                            <div class="ui-progress-bar" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-progress value="60" success&gt;&lt;/ui-progress&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Failure Example -->
+                <div class="row">
+                    <h2>failure</h2>
+                    <div class="demo-area">
+                        <div class="ui-progress" failure>
+                            <div class="ui-progress-bar" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>&lt;ui-progress value="60" failure&gt;&lt;/ui-progress&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="section">
+                <h2>Parameters</h2>
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <div class="code-block">
+                        <pre><code>value
+percent
+success
+failure</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        const progressBars = document.querySelectorAll('.ui-progress');
+        progressBars.forEach(bar => {
+            const value = bar.getAttribute('value');
+            if (value) {
+                const progressBar = bar.querySelector('.ui-progress-bar');
+                progressBar.style.width = `${value}%`;
+            }
+        });
+    </script>
+</body>
+</html>
