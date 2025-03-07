@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Tree Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .tree-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .tree-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .tree-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <div class="tree-preview">
+                        <ui-tree style="height: 200px;"></ui-tree>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tree ref="example" style="height: 200px;"&gt;&lt;/ui-tree&gt;
+                    </ui-code>
+                    <ui-code language="typescript">
+                        export function mounted() {
+                            // @ts-ignore
+                            const vm = this;
+                        
+                            var t = {
+                                detail: {
+                                    value: 'test',
+                                    checked: false,
+                                },
+                                children: [
+                                    {
+                                        detail: {
+                                            value: 'test-2',
+                                            checked: false,
+                                        },
+                                        children: [
+                                            {
+                                                detail: {
+                                                    value: 'test-3',
+                                                    checked: false,
+                                                },
+                                                showArrow: false,
+                                                children: [],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            };
+                        
+                            var test = [];
+                        
+                            for (let i = 0; i &lt; 1000; i++) {
+                                test.push(JSON.parse(JSON.stringify(t)));
+                            }
+                        
+                            vm.$refs.example.setTemplate('left', '&lt;ui-checkbox&gt;&lt;/ui-checkbox&gt;');
+                            vm.$refs.example.setTemplateInit('left', ($left) => {
+                                $left.$checkbox = $left.querySelector('ui-checkbox');
+                                $left.$checkbox.addEventListener('confirm', (event) => {
+                                    $left.data.detail.checkbox = !$left.data.detail.checkbox;
+                                    vm.$refs.example.render(true);
+                                });
+                            });
+                            vm.$refs.example.setRender('left', ($left, data) => {
+                                $left.$checkbox.value = data.detail.checkbox;
+                            });
+                        
+                            vm.$refs.example.setTemplate('text', `&lt;span class="name"&gt;&lt;/span&gt;&lt;span class="link"&gt;&lt;/span&gt;`);
+                            vm.$refs.example.setTemplateInit('text', ($text) => {
+                                $text.$name = $text.querySelector('.name');
+                                $text.$link = $text.querySelector('.link');
+                            });
+                            vm.$refs.example.setRender('text', ($text, data) => {
+                                $text.$name.innerHTML = data.detail.value;
+                                $text.$link.innerHTML = `link(${data.index})`;
+                            });
+                        
+                            vm.$refs.example.setTemplate('right', '&lt;ui-icon value="reset"&gt;&lt;/ui-icon&gt;');
+                            vm.$refs.example.setTemplateInit('right', ($right) => {
+                                $right.$refresh = $right.querySelector('ui-icon');
+                                $right.$refresh.addEventListener('click', (event) => {
+                                    console.log($right.data);
+                                });
+                            });
+                        
+                            vm.$refs.example.tree = test;
+                        
+                            vm.$refs.example.addEventListener('keydown', (event) => {
+                                const $dom = vm.$refs.example;
+                                if (event.code === 'ArrowUp') {
+                                    const item = $dom.selectItems[$dom.selectItems.length - 1];
+                                    const index = Math.max(item.index - 1, 0);
+                                    if (event.shiftKey) {
+                                        $dom.select($dom.list[index]);
+                                    } else {
+                                        $dom.clear();
+                                        $dom.select($dom.list[index]);
+                                    }
+                                    $dom.render();
+                                } else if (event.code === 'ArrowDown') {
+                                    const item = $dom.selectItems[$dom.selectItems.length - 1];
+                                    const index = Math.min(item.index + 1, $dom.list.length - 1);
+                                    if (event.shiftKey) {
+                                        $dom.select($dom.list[index]);
+                                    } else {
+                                        $dom.clear();
+                                        $dom.select($dom.list[index]);
+                                    }
+                                    $dom.render();
+                                }
+                            });
+                        
+                            vm.$refs.example.setTemplateInit('item', ($div) => {
+                                const $dom = vm.$refs.example;
+                                $div.addEventListener('click', (event) => {
+                                    if (event.ctrlKey || event.metaKey) {
+                                        $dom.select($div.data);
+                                    } else {
+                                        $dom.clear();
+                                        $dom.select($div.data);
+                                    }
+                                    $dom.render();
+                                });
+                            });
+                            vm.$refs.example.setRender('item', ($div, data) => {
+                                if (data.detail.disabled) {
+                                    $div.setAttribute('disabled', '');
+                                } else {
+                                    $div.removeAttribute('disabled');
+                                }
+                            });
+                        
+                            vm.$refs.example.setItemRender;
+                        
+                            vm.$refs.example.css = `
+                                .item[disabled] {
+                                    opacity: 0.4;
+                                }
+                                
+                                .text > .link {
+                                    margin-left: 10px;
+                                    cursor: pointer;
+                                    color: yellow;
+                                }
+                                
+                                .right > ui-icon {
+                                    cursor: pointer;
+                                    color: green;
+                                }
+                            `;
+                        }
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        tree // tree data
+                        line-height
+                        indent
+                        disabled
+                        readonly
+                        hidden
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

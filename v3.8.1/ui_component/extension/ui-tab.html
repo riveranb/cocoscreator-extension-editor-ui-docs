@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Tab Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .tab-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .tab-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .tab-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <h2>Default Style</h2>
+                    <div class="tab-preview">
+                        <ui-tab>
+                            <ui-button active>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Set value="number" to active button; The number is the index of the button.</h2>
+                    <div class="tab-preview">
+                        <ui-tab value="2">
+                            <ui-button>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button active>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab value="2"&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Underline Style</h2>
+                    <div class="tab-preview">
+                        <ui-tab underline>
+                            <ui-button active>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab underline&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Disabled</h2>
+                    <div class="tab-preview">
+                        <ui-tab disabled>
+                            <ui-button disabled active>Web</ui-button>
+                            <ui-button disabled>IOS</ui-button>
+                            <ui-button disabled>Android</ui-button>
+                            <ui-button disabled>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab disabled&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                    <div class="tab-preview">
+                        <ui-tab disabled underline>
+                            <ui-button disabled active>Web</ui-button>
+                            <ui-button disabled>IOS</ui-button>
+                            <ui-button disabled>Android</ui-button>
+                            <ui-button disabled>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab disabled underline&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>Width Overflow</h2>
+                    <div class="tab-preview">
+                        <ui-tab style="width: 100px;">
+                            <ui-button active>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab style="width: 100px"&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                    <div class="tab-preview">
+                        <ui-tab underline style="width: 100px;">
+                            <ui-button active>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-tab underline style="width: 100px"&gt;
+                            &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                            &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                            &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                        &lt;/ui-tab&gt;
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        value
+                        disabled
+                        underline
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Events">
+                <div class="row">
+                    <h2>Try It</h2>
+                    <h4>current value: 0</h4>
+                    <div class="tab-preview">
+                        <ui-tab value="0">
+                            <ui-button active>Web</ui-button>
+                            <ui-button>IOS</ui-button>
+                            <ui-button>Android</ui-button>
+                            <ui-button>Mini Game</ui-button>
+                        </ui-tab>
+                    </div>
+                    <div class="row">
+                        <h2>Events</h2>
+                        <ui-code language="typescript">
+                            change // general case use this event
+                            confirm
+                        </ui-code>
+                    </div>
+                    <div class="row">
+                        <h2>VUE JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-tab value="0"
+                                @change="onChange($event.target.value)"
+                                @confirm="onConfirm($event.target.value)"
+                            &gt;
+                                &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                                &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                                &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                                &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                            &lt;/ui-tab&gt;
+                        </ui-code>
+                    </div>
+                    <div class="row">
+                        <h2>Vanilla JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-tab id="ui-tab" value="0"&gt;
+                                &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                                &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                                &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                                &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                            &lt;/ui-tab&gt;
+                        </ui-code>
+                        <ui-code language="typescript">
+                            const element = document.getElementById('#ui-tab');
+
+                            // addEventListener
+                            element.addEventListener('change', (event) => {
+                                // changed value
+                                console.log(event.target.value)
+                            });
+                            element.addEventListener('confirm', (event) => {
+                                // confirm value
+                                console.log(event.target.value)
+                            });
+                        </ui-code>
+                    </div>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Methods">
+                <div class="row">
+                    <h2>Get/Set Value</h2>
+                    <ui-code language="typescript">
+                        const element = document.getElementById('#ui-tab');
+                        // set value
+                        element.value = '0';
+
+                        // get value
+                        const tabValue = element.value;
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

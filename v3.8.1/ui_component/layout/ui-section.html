@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Section Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .section-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .section-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .section-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <h2>Default Style</h2>
+                    <div class="section-preview">
+                        <ui-section header="Content padding-left is 28px" expand>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section header="Content padding-left is 28px" expand&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                    <div class="section-preview">
+                        <ui-section>
+                            <div slot="header">slot="header"</div>
+                            <div>This is content</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section&gt;
+                            &lt;div slot="header"&gt;slot="header"&lt;/div&gt;
+                            &lt;div&gt;This is content&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>class="config" Style</h2>
+                    <div class="section-preview">
+                        <ui-section header="Header has background, content padding-left is 0px" class="config">
+                            <div>This is content</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section class="config" header="Header has background, content padding-left is 0px"&gt;
+                            &lt;div&gt;This is content&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>expand</h2>
+                    <div class="section-preview">
+                        <ui-section header="Header text" expand>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section header="Header text" expand&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>whole</h2>
+                    <div class="section-preview">
+                        <ui-section header="Can not collapse, content padding-left is 8px" whole>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section header="Can not collapse, content padding-left is 8px" whole&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                    <div class="section-preview">
+                        <ui-section whole class="config">
+                            <div slot="header">Can not collapse</div>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section class="config" whole&gt;
+                            &lt;div slot="header"&gt;Can not collapse&lt;/div&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>disabled</h2>
+                    <div class="section-preview">
+                        <ui-section expand disabled>
+                            <div slot="header">header</div>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section expand disabled&gt;
+                            &lt;div slot="header"&gt;header&lt;/div&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="section-preview">
+                        <ui-section expand readonly>
+                            <div slot="header">header</div>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-section expand readonly&gt;
+                            &lt;div slot="header"&gt;header&lt;/div&gt;
+                            &lt;div&gt;one&lt;/div&gt;
+                            &lt;div&gt;two&lt;/div&gt;
+                            &lt;div&gt;three&lt;/div&gt;
+                        &lt;/ui-section&gt;
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        header
+                        expand // initial show with expand state
+                        whole // can not collapse
+                        disabled
+                        readonly
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Events">
+                <div class="row">
+                    <h2>Try It</h2>
+                    <div class="section-preview">
+                        <ui-section>
+                            <div>one</div>
+                            <div>two</div>
+                            <div>three</div>
+                        </ui-section>
+                    </div>
+                    <div class="row">
+                        <h2>VUE JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-section header="Header text"
+                                @expand="onExpand"
+                                @uiscroll="onUIscroll"
+                            &gt;
+                                &lt;div&gt;one&lt;/div&gt;
+                                &lt;div&gt;two&lt;/div&gt;
+                                &lt;div&gt;three&lt;/div&gt;
+                            &lt;/ui-section&gt;
+                        </ui-code>
+                    </div>
+                    <div class="row">
+                        <h2>Vanilla JS</h2>
+                        <ui-code language="html">
+                            &lt;ui-section id="ui-section" header="Header text"&gt;
+                                &lt;div&gt;one&lt;/div&gt;
+                                &lt;div&gt;two&lt;/div&gt;
+                                &lt;div&gt;three&lt;/div&gt;
+                            &lt;/ui-section&gt;
+                        </ui-code>
+                        <ui-code language="typescript">
+                            const element = document.getElementById('#ui-section');
+
+                            // addEventListener
+                            element.addEventListener('expand', () => {
+                                console.log('onExpand');
+                            });
+                            element.addEventListener('uiscroll', () => {
+                                console.log('onUIScroll');
+                            });
+                        </ui-code>
+                    </div>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

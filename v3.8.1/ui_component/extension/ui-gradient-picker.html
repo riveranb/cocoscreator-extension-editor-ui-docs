@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Gradient Picker Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .gradient-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .gradient-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .gradient-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <div class="gradient-preview">
+                        <ui-gradient-picker></ui-gradient-picker>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-gradient-picker&gt;&lt;/ui-gradient-picker&gt;
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        value
+                        disabled
+                        readonly
+                        invalid
+                        hidden
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Events">
+                <div class="row">
+                    <h2>Events</h2>
+                    <ui-code language="typescript">
+                        change
+                        confirm
+                    </ui-code>
+                </div>
+                <div class="row">
+                    <h2>VUE JS</h2>
+                    <ui-code language="html">
+                        &lt;ui-gradient-picker
+                            @change="onChange($event.target.value)"
+                            @confirm="onConfirm($event.target.value)"
+                        &gt;&lt;/ui-gradient-picker&gt;
+                    </ui-code>
+                </div>
+                <div class="row">
+                    <h2>Vanilla JS</h2>
+                    <ui-code language="html">
+                        &lt;ui-gradient-picker id="ui-gradient-picker"&gt;&lt;/ui-gradient-picker&gt;
+                    </ui-code>
+                    <ui-code language="typescript">
+                        const element = document.getElementById('#ui-gradient-picker');
+
+                        // addEventListener
+                        element.addEventListener('change', (event) => {
+                            // changed value
+                            console.log(event.target.value)
+                        });
+                        element.addEventListener('confirm', (event) => {
+                            // confirm value
+                            console.log(event.target.value)
+                        });
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Methods">
+                <div class="row">
+                    <h2>Get/Set Value</h2>
+                    <ui-code language="typescript">
+                        const element = document.getElementById('#ui-gradient-picker');
+                        // set value
+                        element.value = 'value';
+
+                        // get value
+                        const gradientValue = element.value;
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>

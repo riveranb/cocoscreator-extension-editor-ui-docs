@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Prop Component</title>
+    <style>
+        :root {
+            --color-normal-fill: #1f1f1f;
+            --color-normal-fill-emphasis: #2d2d2d;
+            --color-normal-border: #3f3f3f;
+            --color-normal-text: #cccccc;
+            --color-normal-text-secondary: #999999;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-hover: #2d2d2d;
+            --color-normal-fill-active: #3f3f3f;
+            --color-normal-border-hover: #4f4f4f;
+            --color-normal-border-active: #5f5f5f;
+            --color-normal-text-hover: #ffffff;
+            --color-normal-text-active: #ffffff;
+            --color-normal-text-disabled-hover: #999999;
+            --color-normal-text-disabled-active: #999999;
+            --color-normal-fill-disabled: #1f1f1f;
+            --color-normal-border-disabled: #3f3f3f;
+            --color-normal-text-disabled: #666666;
+            --color-normal-fill-readonly: #1f1f1f;
+            --color-normal-border-readonly: #3f3f3f;
+            --color-normal-text-readonly: #999999;
+            --color-normal-fill-invalid: #1f1f1f;
+            --color-normal-border-invalid: #ff4d4f;
+            --color-normal-text-invalid: #ff4d4f;
+            --color-normal-fill-hidden: transparent;
+            --color-normal-border-hidden: transparent;
+            --color-normal-text-hidden: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--color-normal-text);
+            background: var(--color-normal-fill);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            background: var(--color-normal-fill-emphasis);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--color-normal-text);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        h4 {
+            color: var(--color-normal-text-secondary);
+            margin: 10px 0;
+        }
+
+        .prop-preview {
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .prop-preview:hover {
+            border-color: var(--color-normal-border-hover);
+        }
+
+        .prop-preview[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        ui-code {
+            display: block;
+            background: var(--color-normal-fill);
+            border: 1px solid var(--color-normal-border);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--color-normal-text);
+        }
+
+        ui-section {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        ui-section[expand] {
+            display: block;
+        }
+
+        ui-section[header] {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ui-section expand header="Initialize">
+                <div class="row">
+                    <div class="prop-preview">
+                        <ui-prop class="mb-10">
+                            <ui-label slot="label" value="Checkbox"></ui-label>
+                            <ui-checkbox slot="content"></ui-checkbox>
+                        </ui-prop>
+                        <ui-prop class="mb-10">
+                            <ui-label slot="label" value="Name"></ui-label>
+                            <ui-input slot="content" tabindex="0"></ui-input>
+                        </ui-prop>
+                        <ui-prop class="mb-10">
+                            <ui-label slot="label" value="Color"></ui-label>
+                            <ui-color slot="content"></ui-color>
+                        </ui-prop>
+                        <ui-prop class="mb-10">
+                            <ui-label slot="label" value="Select"></ui-label>
+                            <ui-select slot="content">
+                                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                                <option value="2">Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.</option>
+                            </ui-select>
+                        </ui-prop>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-prop&gt;
+                            &lt;ui-label slot="label"&gt;Checkbox&lt;/ui-label&gt;
+                            &lt;ui-checkbox slot="content"&gt;&lt;/ui-checkbox&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop&gt;
+                            &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                            &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop&gt;
+                            &lt;ui-label slot="label"&gt;Color&lt;/ui-label&gt;
+                            &lt;ui-color slot="content"&gt;&lt;/ui-color&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop&gt;
+                            &lt;ui-label slot="label"&gt;Select&lt;/ui-label&gt;
+                            &lt;ui-select slot="content"&gt;
+                                &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                                &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+                            &lt;/ui-select&gt;
+                        &lt;/ui-prop&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>readonly</h2>
+                    <div class="prop-preview">
+                        <ui-prop readonly>
+                            <ui-label slot="label" readonly value="Name">Name</ui-label>
+                            <ui-input slot="content" readonly tabindex="0"></ui-input>
+                        </ui-prop>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-prop readonly&gt;
+                            &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                            &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>no-label</h2>
+                    <div class="prop-preview">
+                        <ui-prop no-label>
+                            <ui-label slot="label" value="Name">Name</ui-label>
+                            <ui-input slot="content" tabindex="0"></ui-input>
+                        </ui-prop>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-prop no-label&gt;
+                            &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                            &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>message</h2>
+                    <div class="prop-preview">
+                        <ui-prop message="default message..." class="mb-10">
+                            <ui-label slot="label" value="Name A">Name A</ui-label>
+                            <ui-input slot="content" value="name a" tabindex="0"></ui-input>
+                        </ui-prop>
+                        <ui-prop>
+                            <ui-label slot="label" value="Name B">Name B</ui-label>
+                            <ui-input slot="content" value="name b" tabindex="0"></ui-input>
+                            <div slot="message">
+                                Here is a showcase with a link:
+                                <ui-link value="https://www.cocos.com/docs">Custom Message</ui-link>
+                            </div>
+                        </ui-prop>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-prop message="default message..."&gt;
+                            &lt;ui-label slot="label"&gt;Name A&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="name a"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop&gt;
+                            &lt;ui-label slot="label"&gt;Name B&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="name b"&gt;&lt;/ui-input&gt;
+                            &lt;div slot="message"&gt;
+                                Here is a showcase with a link:
+                                &lt;ui-link value="https://www.cocos.com/docs"&gt;Custom Message&lt;/ui-link&gt;
+                            &lt;/div&gt;
+                        &lt;/ui-prop&gt;
+                    </ui-code>
+                </div>
+
+                <div class="row">
+                    <h2>text style</h2>
+                    <div class="prop-preview">
+                        <ui-prop message="primary message..." class="primary mb-10">
+                            <ui-label slot="label" value="Name A">Name A</ui-label>
+                            <ui-input slot="content" value="primary" tabindex="0"></ui-input>
+                        </ui-prop>
+                        <ui-prop message="success message..." class="success mb-10">
+                            <ui-label slot="label" value="Name B">Name B</ui-label>
+                            <ui-input slot="content" value="success" tabindex="0"></ui-input>
+                        </ui-prop>
+                        <ui-prop message="warn message..." class="warn mb-10">
+                            <ui-label slot="label" value="Name C">Name C</ui-label>
+                            <ui-input slot="content" value="warn" tabindex="0"></ui-input>
+                        </ui-prop>
+                        <ui-prop message="error message..." class="danger">
+                            <ui-label slot="label" value="Name D">Name D</ui-label>
+                            <ui-input slot="content" value="danger" tabindex="0"></ui-input>
+                        </ui-prop>
+                    </div>
+                    <ui-code language="html">
+                        &lt;ui-prop message="primary message..." class="primary"&gt;
+                            &lt;ui-label slot="label"&gt;Name A&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="primary"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop message="success message..." class="success"&gt;
+                            &lt;ui-label slot="label"&gt;Name B&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="success"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop message="warn message..." class="warn"&gt;
+                            &lt;ui-label slot="label"&gt;Name C&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="warn"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+
+                        &lt;ui-prop message="error message..." class="danger"&gt;
+                            &lt;ui-label slot="label"&gt;Name D&lt;/ui-label&gt;
+                            &lt;ui-input slot="content" value="danger"&gt;&lt;/ui-input&gt;
+                        &lt;/ui-prop&gt;
+                    </ui-code>
+                </div>
+            </ui-section>
+
+            <ui-section expand header="Parameters">
+                <div class="row">
+                    <h2>Attributes</h2>
+                    <ui-code language="typescript">
+                        readonly // just show lock icon
+                        no-label // do not show label
+                        message // display message below the prop
+                        hidden
+                    </ui-code>
+                </div>
+            </ui-section>
+        </div>
+    </div>
+</body>
+</html>
